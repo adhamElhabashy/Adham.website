@@ -1,0 +1,97 @@
+/// make circle of Element
+@mixin circle($dimentions) {
+	border-radius: 50%;
+	width: $dimentions;
+	height: $dimentions;
+}
+// // // // // // // // // //
+/// Centering Element content
+@mixin centering-content {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+// // // // // // // // // //
+/// Centering Element in page
+@mixin centering-element {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+// // // // // // // // // //
+@mixin overlay($color, $opacity) {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba($color, $opacity);
+}
+// // // // // // // // // //
+/// mixin to add prefixes to animation
+@mixin animate($name) {
+	@-webkit-keyframes #{$name} {
+		@content;
+	}
+	@keyframes #{$name} {
+		@content;
+	}
+}
+// // // // // // // // // //
+/// create media breakpoints
+@mixin breakPoints($point) {
+	@if $point == mobile {
+		@media (max-width: 767px) {
+			@content;
+		}
+	} @else if $point == small {
+		@media (min-width: 768px) and (max-width: 991px) {
+			@content;
+		}
+	} @else if $point == medium {
+		@media (min-width: 992px) and (max-width: 1199px) {
+			@content;
+		}
+	} @else if $point == large {
+		@media (min-width: 1200px) {
+			@content;
+		}
+	}
+}
+// // // // // // // // // //
+@mixin arrow($direction) {
+	@if $direction == "top" {
+		content: "";
+		position: absolute;
+		top: -40px;
+		left: 50%;
+		transform: translateX(-50%);
+		border: 20px solid transparent;
+		border-bottom-color: red;
+	} @else if $direction == "right" {
+		content: "";
+		position: absolute;
+		right: -40px;
+		top: 50%;
+		transform: translateY(-50%);
+		border: 20px solid transparent;
+		border-left-color: red;
+	} @else if $direction == "bottom" {
+		content: "";
+		position: absolute;
+		left: 50%;
+		bottom: -40px;
+		transform: translateX(-50%);
+		border: 20px solid transparent;
+		border-top-color: red;
+	} @else if $direction == "left" {
+		content: "";
+		position: absolute;
+		left: -40px;
+		top: 50%;
+		transform: translateY(-50%);
+		border: 20px solid transparent;
+		border-right-color: red;
+	}
+}
